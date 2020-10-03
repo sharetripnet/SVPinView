@@ -416,7 +416,7 @@ extension SVPinView : UITextFieldDelegate
             
             if text.count == 0 {
                 textField.isSecureTextEntry = false
-                placeholderLabel.isHidden = false
+//                placeholderLabel.isHidden = false
             } else if deleteButtonAction == .moveToPreviousAndDelete {
                 textField.text = ""
                 let passwordIndex = (textField.tag - 100) - 1
@@ -435,6 +435,9 @@ extension SVPinView : UITextFieldDelegate
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        if let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel {
+            placeholderLabel.isHidden = !(textField.text?.isEmpty ?? false)
+        }
         if let containerView = textField.superview?.viewWithTag(51),
         let underLine = textField.superview?.viewWithTag(50) {
             self.stylePinField(containerView: containerView, underLine: underLine, isActive: false)
