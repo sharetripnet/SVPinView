@@ -49,6 +49,7 @@ class PinViewController: UIViewController {
         pinView.tintColor = .white
         pinView.becomeFirstResponderAtIndex = 0
         pinView.shouldDismissKeyboardOnEmptyFirstField = false
+        pinView.placeholderTextColor = .green
         
         pinView.font = UIFont.systemFont(ofSize: 15)
         pinView.keyboardType = .phonePad
