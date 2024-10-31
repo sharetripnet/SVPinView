@@ -49,6 +49,7 @@ public class SVPinView: UIView {
     fileprivate var view: UIView!
     fileprivate var reuseIdentifier = "SVPinCell"
     fileprivate var isLoading = true
+    fileprivate var dummyRefresh = false
     fileprivate var password = [String]()
     
     // MARK: - Public Properties -
@@ -271,6 +272,38 @@ public class SVPinView: UIView {
         refreshPinView(completionHandler: completionHandler)
     }
     
+    public func refresh(completionHandler: (()->())? = nil) {
+        view.removeFromSuperview()
+        view = nil
+        isLoading = true
+        errorView.isHidden = true
+        dummyRefresh = true
+        loadView { [weak self] in
+            self?.dummyRefresh = false
+            self?.onlyPastePin()
+        }
+    }
+    
+    @objc
+    public func onlyPastePin() {
+        for (index,char) in password.enumerated() {
+            guard index < pinLength else { return }
+            guard let textField = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(101 + index) as? SVPinField,
+                let placeholderLabel = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(400) as? UILabel
+            else {
+                showPinError(error: "ERR-103: Type Mismatch")
+                return
+            }
+            textField.text = String(char)
+            placeholderLabel.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(secureTextDelay), execute: {
+                if textField.text != "" {
+                    if self.shouldSecureText { textField.text = self.secureCharacter } else {}
+                }
+            })
+        }
+    }
+    
     /// Clears the entered PIN and refreshes the view.
     /// (internally calls the clearPin method; re-declared since the name is more intuitive)
     /// - Parameter completionHandler: Called after the pin is cleared the view is re-rendered.
@@ -356,7 +389,7 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         stylePinField(containerView: containerView, underLine: underLine, isActive: false)
         
         // Make the Pin field the first responder
-        if let firstResponderIndex = becomeFirstResponderAtIndex, firstResponderIndex == indexPath.item {
+        if let firstResponderIndex = becomeFirstResponderAtIndex, firstResponderIndex == indexPath.item, !dummyRefresh {
             textField.becomeFirstResponder()
         }
         

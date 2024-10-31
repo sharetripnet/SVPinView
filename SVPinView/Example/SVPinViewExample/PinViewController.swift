@@ -36,7 +36,7 @@ class PinViewController: UIViewController {
         pinView.borderLineColor = UIColor.white
         pinView.activeBorderLineColor = UIColor.white
         pinView.borderLineThickness = 1
-        pinView.shouldSecureText = true
+        pinView.shouldSecureText = false
         pinView.allowsWhitespaces = false
         pinView.style = .none
         pinView.fieldBackgroundColor = UIColor.white.withAlphaComponent(0.3)
@@ -99,6 +99,10 @@ class PinViewController: UIViewController {
         pinView.pastePin(pin: pin)
     }
     
+    @IBAction func setDefaultPin() {
+        pinView.pastePin(pin: "12345")
+    }
+    
     @IBAction func toggleStyle() {
         var nextStyle = pinView.style.rawValue + 1
         if nextStyle == 3 { nextStyle = 0 }
@@ -126,7 +130,8 @@ class PinViewController: UIViewController {
             pinView.style = style
         @unknown default: break
         }
-        clearPin()
+        pinView.refresh()
+//        clearPin()
     }
     
     func didFinishEnteringPin(pin:String) {
