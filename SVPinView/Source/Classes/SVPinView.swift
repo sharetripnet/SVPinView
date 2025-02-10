@@ -90,6 +90,7 @@ public class SVPinView: UIView {
     
     public var didFinishCallback: ((String)->())?
     public var didChangeCallback: ((String)->())?
+    public var didFocusCallback: (()->())?
     
     // MARK: - Init methods -
     required public init?(coder aDecoder: NSCoder) {
@@ -272,7 +273,7 @@ public class SVPinView: UIView {
         refreshPinView(completionHandler: completionHandler)
     }
     
-    public func refresh(completionHandler: (()->())? = nil) {
+    public func refresh(shouldPaste: Bool = true, completionHandler: (()->())? = nil) {
         view.removeFromSuperview()
         view = nil
         isLoading = true
@@ -280,7 +281,11 @@ public class SVPinView: UIView {
         dummyRefresh = true
         loadView { [weak self] in
             self?.dummyRefresh = false
-            self?.onlyPastePin()
+            if shouldPaste {
+                self?.onlyPastePin()
+            } else {
+                self?.password.removeAll()
+            }
         }
     }
     
@@ -446,6 +451,7 @@ extension SVPinView : UITextFieldDelegate
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         let text = textField.text ?? ""
         if let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel {
+            didFocusCallback?()
             placeholderLabel.isHidden = true
             
             if text.count == 0 {
