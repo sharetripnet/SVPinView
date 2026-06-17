@@ -16,9 +16,17 @@ let package = Package(
     targets: [
         .target(
             name: "SVPinView",
-            path: "SVPinView/Source",
+            path: "SVPinView",
+            exclude: [
+                "Example",
+                "Resources",
+                "Screenshots"
+            ],
+            sources: [
+                "Source/Classes"
+            ],
             resources: [
-                .process(".")
+                .process("Source/XIB's")
             ]
         )
     ]
