@@ -8,14 +8,12 @@
 
 import UIKit
 
-@objc
 public enum SVPinViewStyle: Int {
     case none = 0
     case underline
     case box
 }
 
-@objc
 public enum SVPinViewDeleteButtonAction: Int {
     /// Deletes the contents of the current field and moves the cursor to the previous field.
     case deleteCurrentAndMoveToPrevious = 0
@@ -34,7 +32,6 @@ private class SVPinViewFlowLayout: UICollectionViewFlowLayout {
     override var flipsHorizontallyInOppositeLayoutDirection: Bool { return true }
 }
 
-@objcMembers
 public class SVPinView: UIView {
     
     // MARK: - Private Properties -
