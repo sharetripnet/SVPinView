@@ -35,19 +35,19 @@ private class SVPinViewFlowLayout: UICollectionViewFlowLayout {
 public class SVPinView: UIView {
     
     // MARK: - Private Properties -
-    @IBOutlet fileprivate var collectionView: UICollectionView!
-    @IBOutlet fileprivate var errorView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var errorView: UIView!
     
-    fileprivate var flowLayout: UICollectionViewFlowLayout {
+    internal var flowLayout: UICollectionViewFlowLayout {
         self.collectionView.collectionViewLayout = SVPinViewFlowLayout()
         return self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
     }
     
-    fileprivate var view: UIView!
-    fileprivate var reuseIdentifier = "SVPinCell"
-    fileprivate var isLoading = true
-    fileprivate var dummyRefresh = false
-    fileprivate var password = [String]()
+    internal var view: UIView!
+    internal var reuseIdentifier = "SVPinCell"
+    internal var isLoading = true
+    internal var dummyRefresh = false
+    internal var password = [String]()
     
     // MARK: - Public Properties -
     @IBInspectable public var pinLength: Int = 5
@@ -121,7 +121,7 @@ public class SVPinView: UIView {
     }
     
     // MARK: - Private methods -
-    @objc fileprivate func textFieldDidChange(_ textField: UITextField) {
+    @objc internal func textFieldDidChange(_ textField: UITextField) {
         var nextTag = textField.tag
         let index = nextTag - 100
         guard let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel else {
@@ -185,7 +185,7 @@ public class SVPinView: UIView {
         validateAndSendCallback()
     }
     
-    fileprivate func validateAndSendCallback() {
+    internal func validateAndSendCallback() {
         didChangeCallback?(password.joined())
         
         let pin = getPin()
@@ -193,7 +193,7 @@ public class SVPinView: UIView {
         didFinishCallback?(pin)
     }
     
-    fileprivate func setPlaceholder() {
+    internal func setPlaceholder() {
         for (index, char) in placeholder.enumerated() {
             guard index < pinLength else { return }
             
@@ -203,7 +203,7 @@ public class SVPinView: UIView {
         }
     }
     
-    fileprivate func stylePinField(containerView: UIView, underLine: UIView, isActive: Bool) {
+    internal func stylePinField(containerView: UIView, underLine: UIView, isActive: Bool) {
         
         containerView.backgroundColor = isActive ? activeFieldBackgroundColor : fieldBackgroundColor
         containerView.layer.cornerRadius = isActive ? activeFieldCornerRadius : fieldCornerRadius
@@ -230,7 +230,7 @@ public class SVPinView: UIView {
         }
      }
     
-    @IBAction fileprivate func refreshPinView(completionHandler: (()->())? = nil) {
+    @IBAction internal func refreshPinView(completionHandler: (()->())? = nil) {
         view.removeFromSuperview()
         view = nil
         isLoading = true
@@ -238,7 +238,7 @@ public class SVPinView: UIView {
         loadView(completionHandler: completionHandler)
     }
     
-    fileprivate func showPinError(error: String) {
+    internal func showPinError(error: String) {
         errorView.isHidden = false
         print("\n----------SVPinView Error----------")
         print(error)
