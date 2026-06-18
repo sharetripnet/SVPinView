@@ -1,21 +1,20 @@
-// swift-tools-version: 5.7
-
+// swift-tools-version: 5.9
 import PackageDescription
 
 let package = Package(
     name: "SVPinView",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v16)
     ],
     products: [
         .library(
             name: "SVPinView",
-            targets: ["SVPinView"]
+            targets: ["SVPin"]
         )
     ],
     targets: [
         .target(
-            name: "SVPinView",
+            name: "SVPin",
             path: "SVPinView",
             exclude: [
                 "Example",
