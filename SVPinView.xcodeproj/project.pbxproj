@@ -10,6 +10,8 @@
 		ACE199C3204556340041203C /* SVPinView.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE199C1204556340041203C /* SVPinView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACE199CC2045566E0041203C /* SVPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE199CA2045566E0041203C /* SVPinView.swift */; };
 		B31AAF972089E8D4004F5BE4 /* SVPinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31AAF962089E8D4004F5BE4 /* SVPinField.swift */; };
+		CCB525662FE40ABC00C09D6F /* SVPinViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB525652FE40ABC00C09D6F /* SVPinViewStyle.swift */; };
+		CCB525682FE40AC900C09D6F /* SVPinViewDeleteButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB525672FE40AC900C09D6F /* SVPinViewDeleteButtonAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		ACE199CA2045566E0041203C /* SVPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPinView.swift; sourceTree = "<group>"; };
 		ACE199CB2045566E0041203C /* SVPinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SVPinView.xib; sourceTree = "<group>"; };
 		B31AAF962089E8D4004F5BE4 /* SVPinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPinField.swift; sourceTree = "<group>"; };
+		CCB525652FE40ABC00C09D6F /* SVPinViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPinViewStyle.swift; sourceTree = "<group>"; };
+		CCB525672FE40AC900C09D6F /* SVPinViewDeleteButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPinViewDeleteButtonAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 		ACE199CD204584680041203C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CCB525672FE40AC900C09D6F /* SVPinViewDeleteButtonAction.swift */,
+				CCB525652FE40ABC00C09D6F /* SVPinViewStyle.swift */,
 				ACE199CA2045566E0041203C /* SVPinView.swift */,
 				B31AAF962089E8D4004F5BE4 /* SVPinField.swift */,
 			);
@@ -187,6 +193,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCB525682FE40AC900C09D6F /* SVPinViewDeleteButtonAction.swift in Sources */,
+				CCB525662FE40ABC00C09D6F /* SVPinViewStyle.swift in Sources */,
 				ACE199CC2045566E0041203C /* SVPinView.swift in Sources */,
 				B31AAF972089E8D4004F5BE4 /* SVPinField.swift in Sources */,
 			);

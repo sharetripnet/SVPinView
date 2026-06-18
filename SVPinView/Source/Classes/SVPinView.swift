@@ -8,25 +8,6 @@
 
 import UIKit
 
-public enum SVPinViewStyle: Int {
-    case none = 0
-    case underline
-    case box
-}
-
-public enum SVPinViewDeleteButtonAction: Int {
-    /// Deletes the contents of the current field and moves the cursor to the previous field.
-    case deleteCurrentAndMoveToPrevious = 0
-    
-    /// Simply deletes the content of the current field without moving the cursor.
-    /// If there is no value in the field, the cursor moves to the previous field.
-    case deleteCurrent
-    
-    /// Moves the cursor to the previous field and delets the contents.
-    /// When any field is focused, its contents are deleted.
-    case moveToPreviousAndDelete
-}
-
 private class SVPinViewFlowLayout: UICollectionViewFlowLayout {
     override var developmentLayoutDirection: UIUserInterfaceLayoutDirection { return .leftToRight }
     override var flipsHorizontallyInOppositeLayoutDirection: Bool { return true }
